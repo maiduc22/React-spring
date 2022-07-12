@@ -42,7 +42,7 @@ const Item = styled(animated.div)`
   justify-content: center;
 `;
 
-export const MyBox = () => {
+export const SideBar = () => {
   const [items, setItems] = useState([]);
   const transition = useTransition(items, {
     from: { x: 0, y: 600, opacity: 0 },
@@ -58,9 +58,21 @@ export const MyBox = () => {
             items.length
               ? []
               : [
-                  { y: 50, content: <AiFillSetting size="30px" /> },
-                  { y: 100, content: <AiFillTrophy size="30px" /> },
-                  { y: 150, content: <AiFillGift size="30px" /> },
+                  {
+                    y: 50,
+                    content: <AiFillSetting size="30px" />,
+                    path: "/",
+                  },
+                  {
+                    y: 100,
+                    content: <AiFillTrophy size="30px" />,
+                    path: "/slideimg",
+                  },
+                  {
+                    y: 150,
+                    content: <AiFillGift size="30px" />,
+                    path: "/loading",
+                  },
                 ]
           )
         }
@@ -75,7 +87,7 @@ export const MyBox = () => {
         {transition((style, item) =>
           item ? (
             <Item style={style}>
-              <Link to="">{item.content}</Link>
+              <Link to={item.path}>{item.content}</Link>
             </Item>
           ) : (
             ""

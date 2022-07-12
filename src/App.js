@@ -2,18 +2,19 @@ import React from "react";
 import { useSpring, animated } from "react-spring";
 import { useState } from "react";
 import { Loading } from "./components/loading";
-import { MyBox } from "./components/useTransition";
-import { BrowserRouter } from "react-router-dom";
+import { SideBar } from "./components/SideBar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SlideImage } from "./components/slideImages";
 
 function App() {
   return (
     <BrowserRouter>
-      {/* <Loading></Loading> */}
-      <div style={{ display: "flex" }}>
-        <MyBox></MyBox>
-        <SlideImage></SlideImage>
-      </div>
+      <SideBar></SideBar>
+      <Routes>
+        <Route path="/" element={<div></div>} />
+        <Route path="/slideimg" element={<div>asdsa</div>} exact />
+        <Route path="/loading" element={<div>Loading</div>} exact />
+      </Routes>
     </BrowserRouter>
   );
 }

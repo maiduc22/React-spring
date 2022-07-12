@@ -38,7 +38,6 @@ const ImgWrapper = styled(animated.div)`
   height: 500px;
   width: 500px;
   background-image: url(${(props) => props.img});
-  position: relative;
   color: white;
   margin: 20px;
 `;
@@ -55,7 +54,7 @@ export const SlideImage = () => {
   });
   return (
     <Container>
-      <div style={{ position: "absolute" }}>
+      <div>
         {transition((props, item) => {
           return (
             <div>
