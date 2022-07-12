@@ -13,7 +13,7 @@ import {
 const Container = styled.div`
   background-color: #cdf0ea;
   height: 100vh;
-  width: 10vw;
+  width: 5vw;
   text-align: center;
 `;
 
@@ -43,7 +43,6 @@ const Item = styled(animated.div)`
 `;
 
 export const MyBox = () => {
-  const [visible, setVisible] = useState(false);
   const [items, setItems] = useState([]);
   const transition = useTransition(items, {
     from: { x: 0, y: 600, opacity: 0 },

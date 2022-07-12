@@ -37,7 +37,8 @@ const Container = styled.div`
 const ImgWrapper = styled(animated.div)`
   height: 500px;
   width: 500px;
-  background-color: lightgreen;
+  background-image: url(${(props) => props.img});
+  position: relative;
   color: white;
   margin: 20px;
 `;
@@ -47,26 +48,29 @@ export const SlideImage = () => {
   const handleClick = () => {
     setIndex((index) => (index + 1) % 4);
   };
-  const transition = useTransition(slides, {
-    from: { opacity: 0, transform: "translate3d(100%,0,0)" },
-    enter: { opacity: 1, transform: "translate3d(0%,0,0)", delay: 200 },
-    leave: { opacity: 0, transform: "translate3d(-50%,0,0)" },
+  const transition = useTransition(index, {
+    from: { opacity: 0, x: -1000 },
+    enter: { opacity: 1, x: 0 },
+    leave: { opacity: 0, x: 1000 },
   });
   return (
     <Container>
-      {transition((props, item) => {
-        return (
-          <ImgWrapper
-            key={index}
-            style={{
-              backgroundImage: `url(${item.url})`,
-              ...props,
-            }}
-          >
-            {index}
-          </ImgWrapper>
-        );
-      })}
+      <div style={{ position: "absolute" }}>
+        {transition((props, item) => {
+          return (
+            <div>
+              <ImgWrapper
+                key={index}
+                img={slides[item].url}
+                style={{
+                  // backgroundImage: `url(${item.url})`,
+                  ...props,
+                }}
+              ></ImgWrapper>
+            </div>
+          );
+        })}
+      </div>
       <SlideBtn onClick={() => handleClick()}>
         <FcNext />
       </SlideBtn>
